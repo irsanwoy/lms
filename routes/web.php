@@ -17,4 +17,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware(['auth', 'admin'])->get('/admin-test', function () {
+    return 'Hello Admin, you have full access!';
+});
+
+Route::middleware(['auth'])->get('/user-test', function () {
+    return 'Hello User, you have limited access.';
+});
+
+
 require __DIR__.'/auth.php';
